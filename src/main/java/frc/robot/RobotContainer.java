@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.Constants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -43,6 +44,7 @@ public class RobotContainer {
     private final Shooter m_shooter = new Shooter();
     private final Tilter m_tilter = new Tilter();
     private final Elevator m_elevator = new Elevator(codriver);
+    private final Climber climber = new Climber(leftClimberMotorID, rightClimberMotorID);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -79,7 +81,7 @@ public class RobotContainer {
         elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorC.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
-
+        climber.setDefaultCommand(new TeleClimber(climber, driver, driver.getRawAxis(3), driver.getRawAxis(2)));
     }
 
     /**
