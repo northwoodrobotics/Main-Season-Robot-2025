@@ -22,7 +22,7 @@ public final class Constants {
 
     public static final class Swerve {
         public static final int pigeonID = 28;
-        public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
+        public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot - Done
         COTSTalonFXSwerveConstants.SDS.MK4i.KrakenX60(COTSTalonFXSwerveConstants.SDS.MK4i.driveRatios.L2p);
 
         /* Drivetrain Constants */
