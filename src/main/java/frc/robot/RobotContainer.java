@@ -43,7 +43,7 @@ public class RobotContainer {
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final CoralShooter m_shooter = new CoralShooter();
-    private final Tilter m_tilter = new Tilter();
+    private final CoralTilter m_tilter = new CoralTilter();
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
 
@@ -65,7 +65,7 @@ public class RobotContainer {
 
  // Example: Binding left bumper to a command
 
-        m_tilter.setDefaultCommand(new TeleTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
+        m_tilter.setDefaultCommand(new TeleCoralTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
         m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
     }
 

@@ -2,22 +2,22 @@ package frc.robot.commands;
 
 
 
-import frc.robot.subsystems.Tilter;
+import frc.robot.subsystems.CoralTilter;
 
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
 
-public class TeleTilter extends Command {
+public class TeleCoralTilter extends Command {
 
-      private final Tilter m_tilter;
+      private final CoralTilter m_tilter;
       private DoubleSupplier pwr;
 
  
 
 
-  public TeleTilter(Tilter tilter, DoubleSupplier pwr) {
+  public TeleCoralTilter(CoralTilter tilter, DoubleSupplier pwr) {
 
   
       m_tilter = tilter;

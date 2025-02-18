@@ -8,11 +8,11 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-public class Tilter extends SubsystemBase {
+public class CoralTilter extends SubsystemBase {
   private final TalonFX m_tilterMotor = new TalonFX(indexMotorID);
 
   /** Creates a new Tilter. */
-  public Tilter() {
+  public CoralTilter() {
     
     TalonFXConfiguration tilterConfig = new TalonFXConfiguration();
     tilterConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive; // Set inversion here
