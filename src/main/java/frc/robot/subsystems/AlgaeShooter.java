@@ -6,16 +6,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import com.ctre.phoenix6.signals.InvertedValue;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
+import edu.wpi.first.wpilibj.GenericHID;
+import frc.robot.RobotContainer;
 
 public class AlgaeShooter extends SubsystemBase {
     private final TalonFX topAlgaeShooterMotor = new TalonFX(topAlgaeShooterID); // Set appropriate CAN IDs
     private final TalonFX bottomAlgaeShooterMotor = new TalonFX(bottomAlgaeShooterID);
-    private final CommandXboxController controller;
+    private final GenericHID xbox;
 
-    public AlgaeShooter(CommandXboxController controller) {
-        this.controller = controller;
-
+    public AlgaeShooter() {
+        xbox = RobotContainer.codriver.getHID();
         // Create configuration for TalonFX
         TalonFXConfiguration topConfig = new TalonFXConfiguration();
         TalonFXConfiguration bottomConfig = new TalonFXConfiguration();
@@ -29,7 +29,7 @@ public class AlgaeShooter extends SubsystemBase {
     }
 
     public void setShooterSpeed(double speed) {
-        double finalSpeed = controller.getYButton() ? speed * 0.5 : speed;
+        double finalSpeed = xbox.getRawButton(4) ? speed * 0.5 : speed;
         topAlgaeShooterMotor.set(finalSpeed);
         bottomAlgaeShooterMotor.set(finalSpeed);
     }

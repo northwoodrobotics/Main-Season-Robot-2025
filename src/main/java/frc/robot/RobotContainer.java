@@ -47,7 +47,7 @@ public class RobotContainer {
     private final CoralTilter m_tilter = new CoralTilter();
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
-    private final AlgaeShooter algaeShooter = new AlgaeShooter(codriver);
+    private final AlgaeShooter algaeShooter = new AlgaeShooter();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
