@@ -65,7 +65,7 @@ public class RobotContainer {
 
  // Example: Binding left bumper to a command
 
-        m_tilter.setDefaultCommand(new TeleTilter(m_tilter, () -> ((codriver.getRawAxis(3) - codriver.getRawAxis(2)))));
+        m_tilter.setDefaultCommand(new TeleTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
         m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
     }
 
