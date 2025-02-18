@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,6 +17,11 @@ public class Climber extends SubsystemBase {
 
         TalonFXConfiguration leftConfig = new TalonFXConfiguration();
         TalonFXConfiguration rightConfig = new TalonFXConfiguration();
+
+           // Set both motors to Brake mode
+        leftConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+        rightConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
         rightConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive; // Set inversion here
 
         leftClimberMotor.getConfigurator().apply(leftConfig);
