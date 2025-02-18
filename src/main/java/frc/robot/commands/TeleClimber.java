@@ -19,8 +19,11 @@ public class TeleClimber extends Command {
 
     @Override
     public void execute() {
+        // Get the axis values of the triggers (ranging from 0 to 1.0)
         double leftTrigger = joystick.getRawAxis(leftTriggerAxis);
         double rightTrigger = joystick.getRawAxis(rightTriggerAxis);
+
+        // Calculate the climber speed based on the difference between the triggers
         double speed = rightTrigger - leftTrigger;
         climber.setClimberSpeed(speed);
     }
@@ -32,6 +35,6 @@ public class TeleClimber extends Command {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return false; // This command will continuously execute
     }
 }

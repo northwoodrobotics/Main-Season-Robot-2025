@@ -79,8 +79,16 @@ public class RobotContainer {
         elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorC.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
-        
-    }
+       // Bind the right and left triggers to control the climber using TeleClimber
+    // Right and Left Trigger axis values
+    int leftTriggerAxis = XboxController.Axis.kLeftTrigger.value;
+    int rightTriggerAxis = XboxController.Axis.kRightTrigger.value;
+
+    // Bind the right and left triggers to control the climber using TeleClimber
+    // These will continuously adjust based on the axis values of the triggers
+    climber.setDefaultCommand(new TeleClimber(climber, driver, leftTriggerAxis, rightTriggerAxis));
+}
+    
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
