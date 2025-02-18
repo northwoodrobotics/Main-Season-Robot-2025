@@ -2,13 +2,14 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.AlgaeShooter;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
 
 public class TeleAlgaeShooter extends Command {
     private final AlgaeShooter algaeShooter;
-    private final XboxController controller;
+    private final CommandXboxController controller;
 
-    public TeleAlgaeShooter(AlgaeShooter algaeShooter, XboxController controller) {
+    public TeleAlgaeShooter(AlgaeShooter algaeShooter, CommandXboxController controller) {
         this.algaeShooter = algaeShooter;
         this.controller = controller;
         addRequirements(algaeShooter); // Declare subsystem dependencies

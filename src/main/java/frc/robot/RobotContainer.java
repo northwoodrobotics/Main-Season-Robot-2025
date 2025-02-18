@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -46,6 +47,7 @@ public class RobotContainer {
     private final CoralTilter m_tilter = new CoralTilter();
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
+    private final AlgaeShooter algaeShooter = new AlgaeShooter(codriver);
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -91,6 +93,20 @@ public class RobotContainer {
         // Bind the right and left triggers to control the climber using TeleClimber
         // These will continuously adjust based on the axis values of the triggers
         climber.setDefaultCommand(new TeleClimber(climber, driver, leftTriggerAxis, rightTriggerAxis));
+
+        // Create the command for teleoperating the algae shooter
+        TeleAlgaeShooter teleCommand = new TeleAlgaeShooter(algaeShooter, codriver);
+        // Bind the teleoperating command to a button press (e.g., pressing the "Y" button)
+          new JoystickButton(codriver.getHID(), XboxController.Button.kY.value)  // Button Y
+          .whenPressed(() -> {
+              // Run the command only when button is pressed
+              CommandScheduler.getInstance().schedule(teleCommand);
+          });
+
+        
+
+       
+           
     }
     
 
