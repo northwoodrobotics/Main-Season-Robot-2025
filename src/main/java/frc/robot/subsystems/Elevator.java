@@ -14,9 +14,9 @@ public class Elevator extends SubsystemBase {
     private final CommandXboxController joystick;
 
     // Setpoints for the PID controller
-    public static double setPointA = 1000.0;  // Example setpoint 1
-    public static double setPointB = 2000.0;  // Example setpoint 2
-    public static double setPointX = 3000.0;  // Example setpoint 3
+    public static double setPointA = 0.0;  // Example setpoint 1
+    public static double setPointB = 10.0;  // Example setpoint 2
+    public static double setPointX = 20.0;  // Example setpoint 3
 
     // Current setpoint
     private double currentSetPoint = setPointA;

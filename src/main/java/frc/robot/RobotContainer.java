@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -35,9 +34,9 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     /* Co-Driver Buttons */
-    private final Trigger elevatorA = codriver.button(XboxController.Button.kLeftBumper.value);
-    private final Trigger elevatorB = codriver.button(XboxController.Button.kLeftBumper.value);
-    private final Trigger elevatorC = codriver.button(XboxController.Button.kLeftBumper.value);
+    private final Trigger elevatorA = codriver.button(XboxController.Button.kA.value);
+    private final Trigger elevatorB = codriver.button(XboxController.Button.kB.value);
+    private final Trigger elevatorX = codriver.button(XboxController.Button.kX.value);
 
 
 
@@ -80,9 +79,9 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
-        elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
-        elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
-        elevatorC.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
+        elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointA)));
+        elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointB)));
+        elevatorX.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointX)));
 
 
         // Bind the right and left triggers to control the climber using TeleClimber
@@ -97,17 +96,13 @@ public class RobotContainer {
         // Create the command for teleoperating the algae shooter
         TeleAlgaeShooter teleCommand = new TeleAlgaeShooter(algaeShooter, codriver);
         // Bind the teleoperating command to a button press (e.g., pressing the "Y" button)
-          new JoystickButton(codriver.getHID(), XboxController.Button.kY.value)  // Button Y
-          .whenPressed(() -> {
-              // Run the command only when button is pressed
-              CommandScheduler.getInstance().schedule(teleCommand);
-          });
-
+        codriver.y().onTrue(teleCommand); // Correct method for WPILib 2025
+    }
         
 
        
            
-    }
+    
     
 
     /**
