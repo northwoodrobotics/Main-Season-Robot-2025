@@ -20,7 +20,8 @@ public final class Constants {
     public static final int indexMotorID = 22;
     public static final int elevatorMotorID = 23;
     public static final int leftClimberMotorID = 24;
-
+    public static final int rightClimberMotorID = 25;
+    
     public static final class Swerve {
         public static final int pigeonID = 28;
         public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot - Done
