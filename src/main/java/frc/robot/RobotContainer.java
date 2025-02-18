@@ -32,6 +32,8 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+
+    /* Co-Driver Buttons */
     private final Trigger elevatorA = codriver.button(XboxController.Button.kLeftBumper.value);
     private final Trigger elevatorB = codriver.button(XboxController.Button.kLeftBumper.value);
     private final Trigger elevatorC = codriver.button(XboxController.Button.kLeftBumper.value);
@@ -40,7 +42,7 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-    private final Shooter m_shooter = new Shooter();
+    private final CoralShooter m_shooter = new CoralShooter();
     private final Tilter m_tilter = new Tilter();
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
@@ -64,7 +66,7 @@ public class RobotContainer {
  // Example: Binding left bumper to a command
 
         m_tilter.setDefaultCommand(new TeleTilter(m_tilter, () -> ((codriver.getRawAxis(3) - codriver.getRawAxis(2)))));
-        m_shooter.setDefaultCommand(new TeleShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
+        m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
     }
 
     /**
@@ -79,6 +81,8 @@ public class RobotContainer {
         elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
         elevatorC.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(0.0)));
+
+
         // Bind the right and left triggers to control the climber using TeleClimber
         // Right and Left Trigger axis values
         int leftTriggerAxis = XboxController.Axis.kLeftTrigger.value;

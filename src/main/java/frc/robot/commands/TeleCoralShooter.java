@@ -2,22 +2,22 @@ package frc.robot.commands;
 
 
 
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.CoralShooter;
 
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
 
-public class TeleShooter extends Command {
+public class TeleCoralShooter extends Command {
 
-      private final Shooter m_shooter;
+      private final CoralShooter m_shooter;
       private DoubleSupplier pwr;
 
  
 
 
-  public TeleShooter(Shooter shooter, DoubleSupplier pwr) {
+  public TeleCoralShooter(CoralShooter shooter, DoubleSupplier pwr) {
 
   
       m_shooter = shooter;
