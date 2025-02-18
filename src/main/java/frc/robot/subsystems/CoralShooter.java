@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class CoralShooter extends SubsystemBase {
-  private final TalonFX m_shooterMotor = new TalonFX(ShooterID);
+  private final TalonFX m_shooterMotor = new TalonFX(coralShooterID);
 
   /** Creates a new Tilter. */
   public CoralShooter() {

@@ -1,5 +1,5 @@
 package frc.robot.subsystems;
-
+import static frc.robot.Constants.*;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 
 public class AlgaeShooter extends SubsystemBase {
-    private final TalonFX topAlgaeShooterMotor = new TalonFX(1); // Set appropriate CAN IDs
-    private final TalonFX bottomAlgaeShooterMotor = new TalonFX(2);
+    private final TalonFX topAlgaeShooterMotor = new TalonFX(topAlgaeShooterID); // Set appropriate CAN IDs
+    private final TalonFX bottomAlgaeShooterMotor = new TalonFX(bottomAlgaeShooterID);
     private final CommandXboxController controller;
 
     public AlgaeShooter(CommandXboxController controller) {
