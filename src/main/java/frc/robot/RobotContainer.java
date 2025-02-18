@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import java.util.function.DoubleSupplier;
 
 
 /**
@@ -97,7 +96,12 @@ public class RobotContainer {
 
         // Create the command for teleoperating the algae shooter
         TeleAlgaeShooter teleCommand = new TeleAlgaeShooter(algaeShooter, codriver);
-        algaeShooter.setDefaultCommand(new TeleAlgaeShooter(algaeShooter, () -> codriver.getLeftTriggerAxis() - codriver.getRightTriggerAxis()));
+        // Bind the teleoperating command to a button press (e.g., pressing the "Y" button)
+          new JoystickButton(codriver.getHID(), XboxController.Button.kY.value)  // Button Y
+          .whenPressed(() -> {
+              // Run the command only when button is pressed
+              CommandScheduler.getInstance().schedule(teleCommand);
+          });
 
         
 
