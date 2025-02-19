@@ -15,6 +15,8 @@ public class TeleClimber extends Command {
         this.joystick = joystick;
         this.leftTriggerAxis = leftTriggerAxis;
         this.rightTriggerAxis = rightTriggerAxis;
+
+        addRequirements(climber);
     }
 
     @Override

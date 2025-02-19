@@ -17,7 +17,7 @@ public final class Constants {
     public static final double kShooterLaunchSpeed = 1.0;
     public static final double kShooterIntakeSpeed = -0.3;
     public static final int coralShooterID = 21;
-    public static final int indexMotorID = 22;
+    public static final int coralTilterMotorID = 22;
     public static final int elevatorMotorID = 23;
     public static final int leftClimberMotorID = 24;
     public static final int rightClimberMotorID = 25;

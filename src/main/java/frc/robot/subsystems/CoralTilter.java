@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class CoralTilter extends SubsystemBase {
-  private final TalonFX m_tilterMotor = new TalonFX(indexMotorID);
+  private final TalonFX m_tilterMotor = new TalonFX(coralTilterMotorID);
 
   /** Creates a new Tilter. */
   public CoralTilter() {
