@@ -31,7 +31,7 @@ public class TeleAlgaeShooter extends Command {
 
             // Check if the Y button is pressed to limit speed
         if (controller.y().getAsBoolean()) {
-        speed *= 0.25; // Reduce speed by 50%
+        speed *= 0.25; // Reduce speed by 25%
         }
 
         // Set the speed to the algae shooter
