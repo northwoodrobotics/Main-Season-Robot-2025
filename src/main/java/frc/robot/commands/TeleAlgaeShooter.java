@@ -29,6 +29,15 @@ public class TeleAlgaeShooter extends Command {
         // Combine the trigger inputs to determine the speed (right trigger increases speed, left decreases)
         double speed = rightTrigger - leftTrigger; // Right trigger will give positive, left negative
 
+            // Check if the Y button is pressed to limit speed
+        if (controller.y().getAsBoolean()) {
+        speed *= 0.25; // Reduce speed by 50%
+        }
+
+        // Set the speed to the algae shooter
+        algaeShooter.setShooterSpeed(speed);
+
+
         // Set the speed to the algae shooter
         algaeShooter.setShooterSpeed(speed);
     }
