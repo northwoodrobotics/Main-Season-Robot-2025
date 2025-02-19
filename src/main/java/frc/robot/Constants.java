@@ -16,6 +16,8 @@ public final class Constants {
     public static final double stickDeadband = 0.1;
     public static final double kShooterLaunchSpeed = 1.0;
     public static final double kShooterIntakeSpeed = -0.3;
+    public static final int topAlgaeIntakeID = 19;
+    public static final int bottomAlgaeIntakeID = 20;
     public static final int coralShooterID = 21;
     public static final int coralTilterMotorID = 22;
     public static final int elevatorMotorID = 23;
