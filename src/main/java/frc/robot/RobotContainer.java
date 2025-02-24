@@ -48,6 +48,7 @@ public class RobotContainer {
     private final Climber climber = new Climber(24, 25);
     private final AlgaeShooter algaeShooter = new AlgaeShooter();
     private final AlgaeIntake algaeIntake = new AlgaeIntake();
+    private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -64,10 +65,11 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
 
- // Example: Binding left bumper to a command
+
 
         m_tilter.setDefaultCommand(new TeleCoralTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
         m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
+        algaeTilter.setDefaultCommand(new TeleAlgaeTilter(algaeTilter, driver));
     }
 
     /**
