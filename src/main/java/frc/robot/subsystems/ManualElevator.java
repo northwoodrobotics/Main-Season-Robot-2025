@@ -7,7 +7,6 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
@@ -18,9 +17,9 @@ public class ManualElevator extends SubsystemBase {
   /** Creates a new Tilter. */
   public ManualElevator() {
     
-    TalonFXConfiguration tilterConfig = new TalonFXConfiguration();
-    tilterConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive; // Set inversion here
-    m_elevatorMotor.getConfigurator().apply(tilterConfig);
+    TalonFXConfiguration elevatorConfig = new TalonFXConfiguration();
+    elevatorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive; // Set inversion here
+    m_elevatorMotor.getConfigurator().apply(elevatorConfig);
     
   }
 
@@ -47,7 +46,7 @@ public class ManualElevator extends SubsystemBase {
   @Override
   public void periodic() {
     // Publish encoder value and limit switch state to the SmartDashboard.
-    double encoderPosition = m_elevatorMotor.getPosition().getValue().asDouble();
+    double encoderPosition = m_elevatorMotor.getPosition().getValueAsDouble();
     SmartDashboard.putNumber("Elevator Encoder", encoderPosition);
     SmartDashboard.putBoolean("Bottom Limit Switch", bottomLimitSwitch.get());
 
