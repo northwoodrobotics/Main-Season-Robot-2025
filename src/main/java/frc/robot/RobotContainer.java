@@ -21,7 +21,7 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
     /* Controllers */
-    private final Joystick driver = new Joystick(0);
+    public final Joystick driver = new Joystick(0);
     public static final CommandXboxController codriver = new CommandXboxController(1);
 
     /* Drive Controls */

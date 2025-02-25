@@ -5,23 +5,22 @@ import frc.robot.subsystems.AlgaeTilter;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.Set;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import edu.wpi.first.wpilibj.GenericHID;
 
 public class TeleAlgaeTilter extends Command {
     private final AlgaeTilter algaeTilter;
 
-    private final GenericHID controller;
+    private final Joystick controller;
 
-    public TeleAlgaeTilter(AlgaeTilter algaeTilter, GenericHID driver) {
+    public TeleAlgaeTilter(AlgaeTilter algaeTilter, Joystick controller) {
         this.algaeTilter = algaeTilter;
-        this.controller = driver;
+        this.controller = controller;
     }
 
     
 
     @Override
     public void execute() {
-        algaeTilter.controlWithJoystick(driver);
+        algaeTilter.controlWithJoystick(controller);
     }
 
     @Override
