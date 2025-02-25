@@ -5,7 +5,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class AlgaeTilter extends SubsystemBase {
     private final TalonFX algaeTilterMotor;
@@ -33,14 +33,14 @@ public class AlgaeTilter extends SubsystemBase {
         algaeTilterMotor.setControl(positionRequest.withPosition(position));
     }
 
-    public void controlWithJoystick(XboxController controller) {
-        if (controller.getAButtonPressed()) {
-            setPosition(SETPOINT_A);
-        } else if (controller.getBButtonPressed()) {
-            setPosition(SETPOINT_B);
-        } else if (controller.getXButtonPressed()) {
-            setPosition(SETPOINT_X);
-        }
+   public void controlWithJoystick(Joystick controller) {
+    if (controller.getRawButtonPressed(1)) { // assuming button 1 is A
+        setPosition(SETPOINT_A);
+    } else if (controller.getRawButtonPressed(2)) { // assuming button 2 is B
+        setPosition(SETPOINT_B);
+    } else if (controller.getRawButtonPressed(3)) { // assuming button 3 is X
+        setPosition(SETPOINT_X);
+    }
     }
 
     @Override
