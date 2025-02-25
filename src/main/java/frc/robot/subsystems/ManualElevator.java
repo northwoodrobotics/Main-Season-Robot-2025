@@ -6,7 +6,9 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
@@ -45,10 +47,19 @@ public class ManualElevator extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // Publish encoder value and limit switch state to the SmartDashboard.
-    double encoderPosition = m_elevatorMotor.getPosition().getValueAsDouble();
-    SmartDashboard.putNumber("Elevator Encoder", encoderPosition);
-    SmartDashboard.putBoolean("Bottom Limit Switch", bottomLimitSwitch.get());
+   // Create (or get) a Shuffleboard tab, typically done during initialization
+ShuffleboardTab elevatorTab = Shuffleboard.getTab("Elevator");
+
+// Add widgets for encoder value and limit switch. The `withWidget` method lets you choose the widget type if desired.
+elevatorTab.add("Elevator Encoder", m_elevatorMotor.getPosition().getValueAsDouble())
+           .withWidget(BuiltInWidgets.kTextView)
+           .withPosition(0, 0)
+           .withSize(2, 1);
+
+elevatorTab.add("Bottom Limit Switch", bottomLimitSwitch.get())
+           .withWidget(BuiltInWidgets.kBooleanBox)
+           .withPosition(0, 1)
+           .withSize(2, 1);
 
     // Optionally, enforce a stop in periodic as well if the limit is reached.
     if (bottomLimitSwitch.get()) {
