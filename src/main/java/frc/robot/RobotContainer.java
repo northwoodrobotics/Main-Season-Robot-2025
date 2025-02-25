@@ -49,6 +49,8 @@ public class RobotContainer {
     private final AlgaeShooter algaeShooter = new AlgaeShooter();
     private final AlgaeIntake algaeIntake = new AlgaeIntake();
     private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
+    private final ManualElevator m_elevatorMotor = new ManualElevator();
+
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -68,6 +70,10 @@ public class RobotContainer {
 
 
         m_tilter.setDefaultCommand(new TeleCoralTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
+
+        //Manual control for elevator ***NEED TO CHANGE coral Tiler**
+        //m_elevatorMotor.setDefaultCommand(new HumanElevator(m_elevatorMotor, () -> ((codriver.getRawAxis(5)))));
+
         m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
         algaeTilter.setDefaultCommand(new TeleAlgaeTilter(algaeTilter, driver));
     }
