@@ -2,10 +2,8 @@ package frc.robot.commands;
 
 
 
-import frc.robot.subsystems.CoralTilter;
 import frc.robot.subsystems.ManualElevator;
 
-import static frc.robot.Constants.elevatorMotorID;
 
 import java.util.function.DoubleSupplier;
 
