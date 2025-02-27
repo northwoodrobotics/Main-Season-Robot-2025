@@ -48,9 +48,9 @@ public class RobotContainer {
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
     private final AlgaeShooter algaeShooter = new AlgaeShooter();
-    private final AlgaeIntake algaeIntake = new AlgaeIntake();
-    private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
-    private final ManualElevator m_elevatorMotor = new ManualElevator();
+  //  private final AlgaeIntake algaeIntake = new AlgaeIntake();
+   // private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
+  //  private final ManualElevator m_elevatorMotor = new ManualElevator();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -73,13 +73,13 @@ public class RobotContainer {
 
 
 
-        m_tilter.setDefaultCommand(new TeleCoralTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
+       // m_tilter.setDefaultCommand(new TeleCoralTilter(m_tilter, () -> ((codriver.getRawAxis(5)))));
 
         //Manual control for elevator ***NEED TO CHANGE coral Tiler**
         //m_elevatorMotor.setDefaultCommand(new HumanElevator(m_elevatorMotor, () -> ((codriver.getRawAxis(5)))));
 
-        m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
-        algaeTilter.setDefaultCommand(new TeleAlgaeTilter(algaeTilter, driver));
+       // m_shooter.setDefaultCommand(new TeleCoralShooter(m_shooter, () -> ((codriver.getRawAxis(1)))));
+       // algaeTilter.setDefaultCommand(new TeleAlgaeTilter(algaeTilter, driver));
     }
 
     /**
@@ -91,9 +91,9 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
-        elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointA)));
-        elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointB)));
-        elevatorX.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointX)));
+       // elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointA)));
+       // elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointB)));
+       // elevatorX.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointX)));
 
 
         // Bind the right and left triggers to control the climber using TeleClimber
@@ -106,9 +106,9 @@ public class RobotContainer {
         climber.setDefaultCommand(new TeleClimber(climber, driver, leftTriggerAxis, rightTriggerAxis));
 
         // Create the command for teleoperating the algae shooter
-        TeleAlgaeShooter teleCommand = new TeleAlgaeShooter(algaeShooter, codriver);
+      //  TeleAlgaeShooter teleCommand = new TeleAlgaeShooter(algaeShooter, codriver);
         // Bind the teleoperating command to a button press (e.g., pressing the "Y" button)
-        codriver.y().onTrue(teleCommand); // Correct method for WPILib 2025
+      //  codriver.y().onTrue(teleCommand); // Correct method for WPILib 2025
     }
         
 
