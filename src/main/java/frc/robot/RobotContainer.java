@@ -50,9 +50,9 @@ public class RobotContainer {
     private final CoralTilter m_tilter = new CoralTilter();
     private final Elevator m_elevator = new Elevator(codriver);
     private final Climber climber = new Climber(24, 25);
-    private final AlgaeShooter algaeShooter = new AlgaeShooter();
-  //  private final AlgaeIntake algaeIntake = new AlgaeIntake();
-   // private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
+    private final AlgaeShooter shooter = new AlgaeShooter();
+    private final AlgaeIntake intake = new AlgaeIntake();
+    //private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
   //  private final ManualElevator m_elevatorMotor = new ManualElevator();
 
 
@@ -94,6 +94,8 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+        new JoystickButton(driver, XboxController.Button.kB.value)
+        .whileTrue(new TeleAlgaeIntake(intake, shooter, 0.8)); // Adjust speed as needed
        // elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointA)));
        // elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointB)));
        // elevatorX.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointX)));
