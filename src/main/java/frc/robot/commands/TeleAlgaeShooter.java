@@ -1,56 +1,98 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.AlgaeShooter;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.AlgaeShooter;
+import frc.robot.subsystems.AlgaeIntake;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class TeleAlgaeShooter extends Command {
-    private final AlgaeShooter algaeShooter;
-    private final CommandXboxController controller;
+    private final AlgaeShooter shooter;
+    private final AlgaeIntake intake;
+    private final Joystick driver;
+    private final int highSpeedButton;
+    private final int lowSpeedButton;
+    private boolean isRunning = false;
 
-    public TeleAlgaeShooter(AlgaeShooter algaeShooter, CommandXboxController controller) {
-        this.algaeShooter = algaeShooter;
-        this.controller = controller;
-        addRequirements(algaeShooter); // Declare subsystem dependencies
+    public TeleAlgaeShooter(AlgaeShooter shooter, AlgaeIntake intake, Joystick driver, int highSpeedButton, int lowSpeedButton) {
+        this.shooter = shooter;
+        this.intake = intake;
+        this.driver = driver;
+        this.highSpeedButton = highSpeedButton;
+        this.lowSpeedButton = lowSpeedButton;
+        addRequirements(shooter, intake);
     }
 
     @Override
     public void initialize() {
-        // You can add any initialization code if needed
+        isRunning = true;
+        if (driver.getRawButton(highSpeedButton)) {
+            new SequentialCommandGroup(
+                new Command() {
+                    @Override
+                    public void initialize() {
+                        shooter.setShooterSpeed(1.0);
+                    }
+                    @Override
+                    public boolean isFinished() {
+                        return true;
+                    }
+                },
+                new WaitCommand(0.5),
+                new Command() {
+                    @Override
+                    public void initialize() {
+                        intake.setIntakeSpeed(1.0);
+                    }
+                    @Override
+                    public boolean isFinished() {
+                        return true;
+                    }
+                }
+            ).schedule();
+        } else if (driver.getRawButton(lowSpeedButton)) {
+            new SequentialCommandGroup(
+                new Command() {
+                    @Override
+                    public void initialize() {
+                        shooter.setShooterSpeed(0.25);
+                    }
+                    @Override
+                    public boolean isFinished() {
+                        return true;
+                    }
+                },
+                new WaitCommand(0.5),
+                new Command() {
+                    @Override
+                    public void initialize() {
+                        intake.setIntakeSpeed(0.25);
+                    }
+                    @Override
+                    public boolean isFinished() {
+                        return true;
+                    }
+                }
+            ).schedule();
+        }
     }
 
     @Override
     public void execute() {
-        // Get the trigger values (range from 0.0 to 1.0)
-        double leftTrigger = controller.getLeftTriggerAxis();
-        double rightTrigger = controller.getRightTriggerAxis();
-
-        // Combine the trigger inputs to determine the speed (right trigger increases speed, left decreases)
-        double speed = rightTrigger - leftTrigger; // Right trigger will give positive, left negative
-
-            // Check if the Y button is pressed to limit speed
-        if (controller.y().getAsBoolean()) {
-        speed *= 0.25; // Reduce speed by 25%
+        if (!driver.getRawButton(highSpeedButton) && !driver.getRawButton(lowSpeedButton)) {
+            isRunning = false;
         }
-
-        // Set the speed to the algae shooter
-        algaeShooter.setShooterSpeed(speed);
-
-
-        // Set the speed to the algae shooter
-        algaeShooter.setShooterSpeed(speed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        // Stop the shooter when the command ends or is interrupted
-        algaeShooter.stop();
+        shooter.stop();
+        intake.stop();
     }
 
     @Override
     public boolean isFinished() {
-        // Keep the command running until it's explicitly interrupted
-        return false;
+        return !isRunning;
     }
 }

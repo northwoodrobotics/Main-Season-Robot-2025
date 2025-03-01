@@ -96,6 +96,13 @@ public class RobotContainer {
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
         new JoystickButton(driver, XboxController.Button.kB.value)
         .whileTrue(new TeleAlgaeIntake(intake, shooter, 0.8)); // Adjust speed as needed
+         // Bind A button (full speed) and B button (low speed) to TeleAlgaeShooter command
+         new JoystickButton(driver, XboxController.Button.kX.value)
+         .whileTrue(new TeleAlgaeShooter(shooter, intake, driver, XboxController.Button.kA.value, XboxController.Button.kB.value));
+
+          new JoystickButton(driver, XboxController.Button.kA.value)
+         .whileTrue(new TeleAlgaeShooter(shooter, intake, driver, XboxController.Button.kA.value, XboxController.Button.kB.value));
+    
        // elevatorA.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointA)));
        // elevatorB.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointB)));
        // elevatorX.onTrue(new InstantCommand(() -> m_elevator.setSetPoint(Elevator.setPointX)));
