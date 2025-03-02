@@ -142,11 +142,10 @@ public class RobotContainer {
         private void configureAutoChooser() {
         // Add auto options to the chooser
         autoChooser.setDefaultOption("Do Nothing", Commands.none()); // Default auto
-        autoChooser.addOption("Example Auto", new exampleAuto(s_Swerve));
-         // Add a "Do Nothing" option
+        // Add a "Do Nothing" option
         autoChooser.setDefaultOption("Do Nothing", Commands.none());
-
         // Add more auto commands as needed
+        autoChooser.addOption("Example Auto", new exampleAuto(s_Swerve));
         // autoChooser.addOption("Another Auto", new AnotherAutoCommand(s_Swerve));
 
         // Put chooser on the dashboard
