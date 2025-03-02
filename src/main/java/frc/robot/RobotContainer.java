@@ -3,7 +3,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -54,6 +57,8 @@ public class RobotContainer {
     private final AlgaeIntake intake = new AlgaeIntake();
     //private final AlgaeTilter algaeTilter = new AlgaeTilter(Constants.algaeTilterMotorID);
   //  private final ManualElevator m_elevatorMotor = new ManualElevator();
+    //add sendable chooser for auto
+    private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -68,11 +73,13 @@ public class RobotContainer {
             )
         );
 
+    
         //add camera
         setupCamera();
 
         // Configure the button bindings
         configureButtonBindings();
+        configureAutoChooser();
 
 
 
@@ -132,15 +139,27 @@ public class RobotContainer {
            
 
 
-    
+        private void configureAutoChooser() {
+        // Add auto options to the chooser
+        autoChooser.setDefaultOption("Do Nothing", Commands.none()); // Default auto
+        autoChooser.addOption("Example Auto", new exampleAuto(s_Swerve));
+         // Add a "Do Nothing" option
+        autoChooser.setDefaultOption("Do Nothing", Commands.none());
+
+        // Add more auto commands as needed
+        // autoChooser.addOption("Another Auto", new AnotherAutoCommand(s_Swerve));
+
+        // Put chooser on the dashboard
+        SmartDashboard.putData("Auto Mode", autoChooser);
+    }
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
-    }
+
+     public Command getAutonomousCommand() {
+      return autoChooser.getSelected();
+  }
 }
