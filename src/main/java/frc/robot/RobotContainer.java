@@ -79,6 +79,7 @@ public class RobotContainer {
 
         // Configure the button bindings
         configureButtonBindings();
+        // Configure the auto chooser
         configureAutoChooser();
 
 
